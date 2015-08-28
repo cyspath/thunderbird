@@ -13,6 +13,10 @@
     };
     Thunderbird.MovingObject.call(this, newArgs);
     this.name = "ship";
+    this.decelerateX = false;
+    this.decelerateY = false;
+
+
   };
 
   Ship.RADIUS = 30;
@@ -61,8 +65,21 @@
 
   Ship.prototype.move = function() {
 
-    this.vel[0] = this.vel[0] * 0.98
-    this.vel[1] = this.vel[1] * 0.98
+    if (this.decelerateY === true ) {
+      this.vel[1] = this.vel[1] * 0.95
+      if (Math.round(this.vel[1]) === 0) {
+        this.vel[1] = 0
+        this.decelerateY = false;
+      }
+    }
+
+    if (this.decelerateX === true ) {
+      this.vel[0] = this.vel[0] * 0.95
+      if (Math.round(this.vel[0]) === 0) {
+        this.vel[0] = 0
+        this.decelerateX = false;
+      }
+    }
 
     this.pos[0] = this.game.wrapShip(this.pos[0] + this.vel[0]);
     this.pos[1] = this.game.wrapShip(this.pos[1] + this.vel[1]);

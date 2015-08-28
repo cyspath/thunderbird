@@ -50,9 +50,13 @@
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, 700, 700);
 
+    var lost = true;
     this.array.forEach(function (obj) {
       obj.draw(ctx);
-    });
+      if (obj.name === "ship") { lost = false; }
+    }.bind(this));
+
+    if (lost === true) { this.gameOver(); }
   };
 
   Game.prototype.step = function () {
@@ -94,9 +98,8 @@
 
             //add explosion
             this.array.push(shipExplode);
-          }
 
-          if (arr[i].name === "ship" || arr[j].name === "ship") {
+          } else if (arr[i].name === "ship" || arr[j].name === "ship") {
             if (arr[i].name === "ship") { var ship = arr[i]; var idx = i; } else if (arr[j].name === "ship") { var ship = arr[j]; var idx = j; }
             //give explosion a position
             var shipExplode = new Thunderbird.ShipExplode({ pos: ship.pos, vel: ship.vel, game: ship.game })
@@ -131,6 +134,11 @@
     this.array = this.asteroids.concat(this.ship).concat(this.bullets)
     return this.array
 
+  };
+
+  Game.prototype.gameOver = function () {
+    console.log("Game over, you lost.");
+    
   };
 
 

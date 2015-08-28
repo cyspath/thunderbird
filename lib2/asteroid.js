@@ -41,6 +41,8 @@
 
   Asteroid.prototype.collidedWith = function (otherObject) {
     if (otherObject.name === "enemy") { return false; }
+    if (otherObject.name === "explosion") { return false; }
+
 
     var rSum = this.radius + otherObject.radius;
     var distance = Math.sqrt( Math.pow(this.pos[0] - otherObject.pos[0], 2) + Math.pow(this.pos[1] - otherObject.pos[1], 2) )
