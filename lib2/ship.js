@@ -5,16 +5,17 @@
 
   var Ship = window.Thunderbird.Ship = function (args) {
     var newArgs = {
-      pos: [250,480],
+      pos: [310,560],
       radius: Ship.RADIUS,
       color: Ship.COLOR,
       vel: [0,0],
       game: args.game
     };
     Thunderbird.MovingObject.call(this, newArgs);
+    this.name = "ship";
   };
 
-  Ship.RADIUS = 25;
+  Ship.RADIUS = 30;
   Ship.COLOR = "blue";
   Thunderbird.Util.inherits(Ship, Thunderbird.MovingObject);
 
@@ -25,40 +26,68 @@
     this.vel[1] += movement[1];
   };
 
-  // Ship.prototype.draw = function (ctx) {
-  //   ctx.fillStyle = this.color;
-  //
-  //   ctx.fillStyle="blue";
-  //   ctx.beginPath();
-  //   // Draw a triangle location for each corner from x:y 100,110 -> 200,10 -> 300,110 (it will return to first point)
-  //   ctx.moveTo(this.pos[0],this.pos[1]);
-  //   ctx.lineTo(this.pos[0] + 15,this.pos[1] - 30);
-  //   ctx.lineTo(this.pos[0] + 30 ,this.pos[1]);
-  //   ctx.closePath();
-  //
-  //   ctx.strokeStyle="white";
-  //   ctx.lineWidth = 7;
-  //     ctx.stroke();
-  //     ctx.fill();
-  // };
+
+  Ship.prototype.collidedWith = function (otherObject) {
+    if (otherObject.name === "shipBullet") { return false; }
+
+    var rSum = this.radius + otherObject.radius;
+    var distance = Math.sqrt( Math.pow(this.pos[0] - otherObject.pos[0], 2) + Math.pow(this.pos[1] - otherObject.pos[1], 2) )
+    return (rSum >= distance) ? true : false;
+  };
+
 
   Ship.prototype.draw = function (ctx) {
+    // ctx.fillStyle = "#000000";
+    // ctx.beginPath();
+    // ctx.arc(
+    //   this.pos[0],
+    //   this.pos[1],
+    //   this.radius,
+    //   0,
+    //   2 * Math.PI,
+    //   false
+    // );
+    // ctx.strokeStyle="white";
+    // ctx.lineWidth = 1;
+    // ctx.stroke();
+    // ctx.fill();
+
+    //ship draw
     var image = new Image();
-    image.src = "http://res.cloudinary.com/djdfz4a67/image/upload/ar_1,c_scale,e_fill_light,q_100,r_0,w_100/a_270/v1440562111/imageedit_1_3326253473_jmhm0n.gif"
-    ctx.drawImage(image, this.pos[0]-30, this.pos[1]-30);
+    image.src = "http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,w_100/v1440723449/Spaceship1_ltlahs.png"
+    ctx.drawImage(image, this.pos[0] - 50, this.pos[1] - 53);
   };
+
 
   Ship.prototype.move = function() {
 
-    // this.vel[0] = this.vel[0] * 0.98
+    this.vel[0] = this.vel[0] * 0.98
     this.vel[1] = this.vel[1] * 0.98
 
     this.pos[0] = this.game.wrapShip(this.pos[0] + this.vel[0]);
     this.pos[1] = this.game.wrapShip(this.pos[1] + this.vel[1]);
 
-
-
   };
+
+  Ship.prototype.fireBullet = function() {
+    var posX = this.pos[0]
+    var posY = this.pos[1]
+
+    var bulletLeft = new Thunderbird.Bullet({pos: [posX - 20, posY],
+                                       vel: this.vel.slice(),
+                                       game: this.game});
+
+   var bulletRight = new Thunderbird.Bullet({pos: [posX + 20, posY],
+                                      vel: this.vel.slice(),
+                                      game: this.game});
+
+    // this.game.bullets.push(bulletLeft);
+    // this.game.bullets.push(bulletRight);
+
+    this.game.array.push(bulletLeft);
+    this.game.array.push(bulletRight);
+  };
+
 
 
 })();

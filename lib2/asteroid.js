@@ -4,16 +4,25 @@
   }
 
   var Asteroid = window.Thunderbird.Asteroid = function(args) {
-    var newArgs = {
-      pos: args.pos,
-      radius: [9,10,11][Math.floor(Math.random() * 3)],
-      color: ["#EFC997", "#f3d9b6", "#bfa078"][Math.floor(Math.random() * 3)],
-      // vel: Thunderbird.Util.randomVec(1),
-      vel: [0, 3],
-      game: args.game
-    };
+    this.pos = args.pos;
+    this.radius = 20;
+    this.color = "#EFC997";
+    this.vel = [0, 3];
+    this.game = args.game;
+    this.name = "enemy";
 
-    Thunderbird.MovingObject.call(this, newArgs);
+    this.sx = Math.floor(Math.random() * 8) * 64
+    this.sy = Math.floor(Math.random() * 8) * 64
+    // var newArgs = {
+    //   pos: args.pos,
+    //   radius: [9,10,11][Math.floor(Math.random() * 3)],
+    //   color: ["#EFC997", "#f3d9b6", "#bfa078"][Math.floor(Math.random() * 3)],
+    //   // vel: Thunderbird.Util.randomVec(1),
+    //   vel: [0, 3],
+    //   game: args.game
+    // };
+    //
+    // Thunderbird.MovingObject.call(this, newArgs);
   };
 
   Thunderbird.Util.inherits(Asteroid, Thunderbird.MovingObject);
@@ -21,14 +30,43 @@
   Asteroid.prototype.move = function() {
     this.pos[1] = this.pos[1] + this.vel[1];
 
-    if (this.pos[1] >= 700) {
-      this.pos[1] = 0;
+    if (this.pos[1] >= 900) {
+      this.pos[1] = -200;
     }
 
-    if (this.pos[1] === 0) {
+    if (this.pos[1] === -200) {
       this.pos[0] = Math.floor(Math.random() * (this.game.DIM_X))
     }
   };
 
+  Asteroid.prototype.collidedWith = function (otherObject) {
+    if (otherObject.name === "enemy") { return false; }
+
+    var rSum = this.radius + otherObject.radius;
+    var distance = Math.sqrt( Math.pow(this.pos[0] - otherObject.pos[0], 2) + Math.pow(this.pos[1] - otherObject.pos[1], 2) )
+    return (rSum >= distance) ? true : false;
+  };
+
+  Asteroid.prototype.draw = function () {
+    // ctx.fillStyle = "#000000";
+    // ctx.beginPath();
+    // ctx.arc(
+    //   this.pos[0],
+    //   this.pos[1],
+    //   this.radius,
+    //   0,
+    //   2 * Math.PI,
+    //   false
+    // );
+    // ctx.strokeStyle="white";
+    // ctx.lineWidth = 1;
+    // ctx.stroke();
+    // ctx.fill();
+
+    var image = new Image();
+    image.src = "http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,w_512/v1440734799/asteroid_01_no_moblur_iwak31.png"
+    ctx.drawImage(image, 0, this.sy, 64, 64, this.pos[0] - 30, this.pos[1] - 30, 64, 64);
+
+  };
 
 })();

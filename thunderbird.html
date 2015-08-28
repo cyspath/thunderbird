@@ -9,11 +9,14 @@
 
     <script src="lib2/keymaster.js"></script>
     <script src="lib2/utils.js"></script>
+    <script src="lib2/shipExplode.js"></script>
     <script src="lib2/movingObject.js"></script>
     <script src="lib2/asteroid.js"></script>
     <script src="lib2/ship.js"></script>
     <script src="lib2/game.js"></script>
     <script src="lib2/gameView.js"></script>
+    <script src="lib2/shipBullet.js"></script>
+    <script src="assets/jquery.js"></script>
 
 
 
@@ -21,7 +24,15 @@
       var canvas = document.getElementById("game_canvas");
       var ctx = canvas.getContext("2d");
 
-      var game = new Thunderbird.Game(700, 700, 5);
+      var n = 0;
+      var game = new Thunderbird.Game(700, 700, n);
+
+      var interval = setInterval(function (){
+        game.addAsteroid();
+        n += 1;
+        if (n >= 40) { clearInterval(interval) }
+      }.bind(game), 500)
+
       new Thunderbird.GameView(game, ctx).start(canvas);
     </script>
 

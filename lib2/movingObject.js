@@ -11,6 +11,12 @@
     this.game = args.game;
   };
 
+  MovingObject.prototype.collidedWith = function (otherObject) {
+    var rSum = this.radius + otherObject.radius;
+    var distance = Math.sqrt( Math.pow(this.pos[0] - otherObject.pos[0], 2) + Math.pow(this.pos[1] - otherObject.pos[1], 2) )
+    return (rSum >= distance) ? true : false;
+  };
+
   MovingObject.prototype.draw = function (ctx) {
     ctx.fillStyle = this.color;
     ctx.beginPath();
