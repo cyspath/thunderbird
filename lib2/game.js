@@ -51,12 +51,18 @@
     ctx.fillRect(0, 0, 700, 700);
 
     var lost = true;
+    var won = true;
+
     this.array.forEach(function (obj) {
       obj.draw(ctx);
+
       if (obj.name === "ship") { lost = false; }
+      if (obj.name === "enemy") { won = false; }
     }.bind(this));
 
-    if (lost === true) { this.gameOver(); }
+    if (lost === true) { this.gameLost(); }
+    if (won === true) { this.gameWon(); }
+
   };
 
   Game.prototype.step = function () {
@@ -136,10 +142,20 @@
 
   };
 
-  Game.prototype.gameOver = function () {
+  Game.prototype.gameLost = function () {
     console.log("Game over, you lost.");
-    
+    $('.game-over-msg').text("GAME OVER");
+    $('.game-over-msg').addClass("true");
+    // debugger
   };
+
+  Game.prototype.gameWon = function () {
+    console.log("You won, all enemies eliminated.");
+    $('.game-over-msg').text("Stage Cleared");
+    $('.game-over-msg').addClass("true");
+    // debugger
+  };
+
 
 
 
