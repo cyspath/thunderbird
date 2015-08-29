@@ -2,26 +2,68 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <link rel="stylesheet" type="text/css" href="assets/css.css">
+    <title>
+      Thunderbird
+    </title>
   </head>
   <body>
-    <canvas id='game_canvas' width="500" height="500"> </canvas>
+
+    <div class="game-banner">
+      Thunderbird
+    </div>
+
+    <div class="game-div">
+      <canvas id='game_canvas' width="700" height="700"> </canvas>
+    </div>
+
+    <div class="game-over-msg"></div>
+
+    <div class="controls">
+      <div class="wasd-container">
+        <img src="http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,w_100/v1440808490/wasd_ht1gmj.png" alt="" />
+        <p class="movement">
+          Control ship movements
+        </p>
+      </div>
+      <div class="j-container">
+        <img class='j-img' src="http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,w_40/v1440808691/j-key1_m4lktm.gif" alt="" />
+        <p class="fire">
+          Fire primary lazer
+        </p>
+      </div>
+    </div>
 
     <script src="lib/keymaster.js"></script>
+    <script src="assets/jquery.js"></script>
+
     <script src="lib/utils.js"></script>
     <script src="lib/movingObject.js"></script>
+    <script src="lib/background.js"></script>
+    <script src="lib/shipExplode.js"></script>
     <script src="lib/asteroid.js"></script>
     <script src="lib/ship.js"></script>
-    <script src="lib/bullet.js"></script>
     <script src="lib/game.js"></script>
     <script src="lib/gameView.js"></script>
+    <script src="lib/shipBullet.js"></script>
+    <script src="assets/jquery.js"></script>
+
+
 
     <script>
       var canvas = document.getElementById("game_canvas");
       var ctx = canvas.getContext("2d");
 
-      var game = new Asteroids.Game(500, 500, 20);
-      new Asteroids.GameView(game, ctx).start(canvas);
+      var n = 1;
+      var game = new Thunderbird.Game(700, 700, n);
+
+      var interval = setInterval(function (){
+        game.addAsteroid();
+        n += 1;
+        if (n >= 40) { clearInterval(interval) }
+      }.bind(game), 500)
+
+      new Thunderbird.GameView(game, ctx).start(canvas);
     </script>
 
   </body>
