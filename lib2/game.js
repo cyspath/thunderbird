@@ -9,6 +9,9 @@
     this.DIM_Y = DIM_Y;
     this.NUM_ASTEROIDS = NUM_ASTEROIDS;
 
+    // generate backgrounds
+    this.bgs = [ new Thunderbird.Background({ game: this, pos: [0, -700], imgIdx: 0, bgWidth: 700, bgHeight: 700 }), new Thunderbird.Background({ game: this, pos: [0, 0], imgIdx: 1, bgWidth: 700, bgHeight: 700 }) ];
+
     // holds array of asteriods objects
     this.asteroids = this.addAsteroids.bind(this)();
 
@@ -53,6 +56,10 @@
     var lost = true;
     var won = true;
 
+    this.bgs.forEach(function(bg) {
+      bg.draw(ctx);
+    })
+
     this.array.forEach(function (obj) {
       obj.draw(ctx);
 
@@ -66,11 +73,12 @@
   };
 
   Game.prototype.step = function () {
+    this.moveBackground();
     this.moveObjects();
     this.checkCollisions();
   };
 
-  //move
+  //move obj
   Game.prototype.moveObjects = function () {
     if (this.array == undefined) { this.allObjects(); }
 
@@ -82,6 +90,16 @@
       if (obj.name === "shipBullet" && obj.pos[1] <= -5) {
         this.array.splice(i--, 1);
       }
+    }
+  };
+
+  //move bkg
+  Game.prototype.moveBackground = function () {
+
+    for (var i = 0; i < this.bgs.length; i++) {
+      var obj = this.bgs[i];
+      //move it
+      obj.move();
     }
   };
 

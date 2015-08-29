@@ -13,16 +13,6 @@
 
     this.sx = Math.floor(Math.random() * 8) * 64
     this.sy = Math.floor(Math.random() * 8) * 64
-    // var newArgs = {
-    //   pos: args.pos,
-    //   radius: [9,10,11][Math.floor(Math.random() * 3)],
-    //   color: ["#EFC997", "#f3d9b6", "#bfa078"][Math.floor(Math.random() * 3)],
-    //   // vel: Thunderbird.Util.randomVec(1),
-    //   vel: [0, 3],
-    //   game: args.game
-    // };
-    //
-    // Thunderbird.MovingObject.call(this, newArgs);
   };
 
   Thunderbird.Util.inherits(Asteroid, Thunderbird.MovingObject);

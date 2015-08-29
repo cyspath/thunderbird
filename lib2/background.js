@@ -10,7 +10,7 @@
 
     this.bgWidth = args.bgWidth;
     this.bgHeight = args.bgHeight;
-    this.vel = [0, 0.5];
+    this.vel = [0, 1];
 
     this.name = "background";
     this.src = ["http://res.cloudinary.com/djdfz4a67/image/upload/bo_2px_solid_rgb:000,c_scale,h_700,o_100,w_700/a_270/v1440811892/stars_bno1hg.jpg", "http://res.cloudinary.com/djdfz4a67/image/upload/bo_2px_solid_rgb:000,c_scale,h_700,o_100,w_700/a_180/v1440811892/stars_bno1hg.jpg"][this.imgIdx];
@@ -21,9 +21,9 @@
   Background.prototype.move = function() {
     this.pos[1] = this.pos[1] + this.vel[1];
 
-    // if (this.pos[1] >= 700) {
-    //   this.pos[1] = 0;
-    // }
+    if (this.pos[1] >= 700) {
+      this.pos[1] = -700;
+    }
 
   };
 
@@ -32,7 +32,6 @@
   };
 
   Background.prototype.draw = function () {
-
     var image = new Image();
     image.src = this.src;
     ctx.drawImage(image, this.pos[0], this.pos[1]);
