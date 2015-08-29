@@ -32,6 +32,9 @@ body {
 
 .game-over-msg {
   opacity: 0;
+}
+
+.stage1-end {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -43,10 +46,26 @@ body {
   font-family: 'Ultra', sans-serif;
   font-size: 64px;
 
+   opacity: 1;
+   color: white;
+   transition: opacity 2s ease-in-out;
+   -moz-transition: opacity 2s ease-in-out;
+   -webkit-transition: opacity 2s ease-in-out;
 }
 
-.game-over-msg.true {
-   opacity: 1;
+.stage2-start {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-shadow: 2px 3px #534444, 3px 4px #898585;
+  margin-left: -185px;
+  margin-top: -85px;
+
+  font-weight: bold;
+  font-family: 'Ultra', sans-serif;
+  font-size: 64px;
+
+   opacity: 0;
    color: white;
    transition: opacity 2s ease-in-out;
    -moz-transition: opacity 2s ease-in-out;
