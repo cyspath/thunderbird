@@ -5,6 +5,7 @@ body {
 }
 
 .game-banner {
+  /*font-family: arial;*/
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -52,6 +53,13 @@ body {
    -webkit-transition: opacity 2s ease-in-out;
 }
 
+
+.group:after{
+  content:" ";
+  display: block;
+  clear: both;
+}
+
 .controls {
   margin: 20px auto;
   width: 700px;
@@ -63,27 +71,23 @@ body {
   line-height: 20px;
   display: inline-block;
   margin-left: 15px;
-  position: fixed;
-}
-
-.movement {
-  width: 280px;
-}
-
-.fire {
-  width: 200px;
 }
 
 .wasd-container {
+  float: left;
   width: 380px;
   display: inline-block;
   margin-left: 40px;
 }
 
 .j-container {
-  width: 100px;
-  position: fixed;
+  float: left;
+  width: 275;
   display: inline-block;
+}
+
+.wasd-img, .movement, .fire, .j-img {
+  float: left;
 }
 
 .j-img {
