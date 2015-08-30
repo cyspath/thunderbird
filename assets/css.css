@@ -20,6 +20,7 @@ body {
 }
 
 .game-div {
+  position: relative;
   margin: 0 auto;
 
   -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.75);
@@ -111,4 +112,59 @@ body {
 
 .j-img {
   margin-top: 10px;
+}
+
+/* restart btn */
+.restart-btn {
+  opacity: 0;
+}
+
+.restart-btn.visible {
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  margin-left: -61px;
+  margin-top: -23px;
+
+   opacity: 1;
+
+   background: #3498db;
+   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+   background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+   background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+   background-image: -o-linear-gradient(top, #3498db, #2980b9);
+   background-image: linear-gradient(to bottom, #3498db, #2980b9);
+   -webkit-border-radius: 10;
+   -moz-border-radius: 10;
+   border-radius: 10px;
+   font-family: Arial;
+   color: #ffffff;
+   font-size: 30px;
+   padding: 10px 20px 10px 20px;
+   text-decoration: none;
+
+   transition: opacity 1s ease-in-out;
+   -moz-transition: opacity 1s ease-in-out;
+   -webkit-transition: opacity 1s ease-in-out;
+}
+
+
+.restart-btn:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.restart-btn:focus {
+  outline:0;
+}
+
+/*score*/
+.score {
+  color: #E1E1EC;
+  line-height: 0;
+  position: absolute;
+  right: 2%;
+  top: 4%;
+  font-family: 'Gill Sans', sans-serif;
+  font-size: 36px;
 }

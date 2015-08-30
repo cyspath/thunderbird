@@ -14,10 +14,12 @@
     </div>
 
     <div class="game-div">
+      <div class="score"></div>
       <canvas id='game_canvas' width="700" height="700"> </canvas>
     </div>
 
     <div class="game-over-msg"></div>
+    <button class="restart-btn">REPLAY</button>
 
     <div class="controls group">
       <div class="wasd-container group">
@@ -61,14 +63,22 @@
 
       var n = 1;
       var game = new Thunderbird.Game(700, 700, n);
-      
-      var interval = setInterval(function (){
-        game.addAsteroid();
-        n += 1;
-        if (n >= 40) { clearInterval(interval) }
-      }.bind(game), 500)
+
+      // var interval = setInterval(function (){
+      //   game.addAsteroid();
+      //   n += 1;
+      //   if (n >= 40) { clearInterval(interval) }
+      // }.bind(game), 500)
 
       new Thunderbird.GameView(game, ctx).start(canvas);
+    </script>
+
+
+    <script>
+      $('.restart-btn').click(function() {
+        $('.restart-btn').removeClass('visible');
+        location.reload();
+      })
     </script>
 
   </body>
