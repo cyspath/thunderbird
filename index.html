@@ -48,6 +48,8 @@
     <script src="lib/ship.js"></script>
     <script src="lib/alienBullet.js"></script>
     <script src="lib/alienOne.js"></script>
+    <script src="lib/alienBoss.js"></script>
+
 
 
     <script src="lib/game.js"></script>
@@ -66,10 +68,16 @@
       console.log("StageOne...");
 
       var interval = setInterval(function (){
+
+        game.array.push(new Thunderbird.AlienBoss({
+          pos: [350, 100],
+          game: this
+        }))
+
         game.addAsteroid();
         n += 1;
         // n max ~ 50
-        if (n >= 50) {
+        if (n >= 2) {
           game.allEnemiesGenerated = true;
           clearInterval(interval);
         }
