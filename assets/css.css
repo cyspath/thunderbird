@@ -179,6 +179,7 @@ a {
 
 .restart-btn {
   opacity: 0;
+  z-index: 101;
 }
 
 .restart-btn.visible {
