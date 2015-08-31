@@ -15,6 +15,8 @@
 
     <div class="game-div">
       <div class="score"></div>
+      <div class="highest-score-text"></div>
+
       <canvas id='game_canvas' width="700" height="700"> </canvas>
     </div>
 
@@ -34,7 +36,11 @@
           Fire primary lazer
         </p>
       </div>
+      <div class="goal">
+        <img src="http://res.cloudinary.com/djdfz4a67/image/upload/v1441039907/greyimages_lixrvq.png" alt="" />
+      </div>
     </div>
+
 
     <script src="lib/keymaster.js"></script>
     <script src="assets/jquery.js"></script>
@@ -73,8 +79,8 @@
       var interval = setInterval(function (){
         game.addAsteroid();
         n += 1;
-        // n max ~ 50
-        if (n >= 50) {
+        // n max ~ 15
+        if (n >= 15) {
           game.allEnemiesGenerated = true;
           clearInterval(interval);
         }
@@ -91,5 +97,13 @@
       })
     </script>
 
+    <script>
+      if (localStorage["HIGHSCORES"] == undefined) {
+        $('.highest-score-text').text('Your Highest Score: 000')
+      } else {
+        var score = localStorage["HIGHSCORES"];
+        $('.highest-score-text').text('Your Highest Score: ' + score)
+      }
+    </script>
   </body>
 </html>
