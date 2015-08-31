@@ -9,9 +9,17 @@
   </head>
   <body>
 
-    <div class="game-banner">
-      Thunderbird
+    <a href="http://github.com/cyspath/thunderbird-game">
+      <div class="game-banner">
+        Source Code
+      </div>
+    </a>
+
+    <div class="instructions-div">
+      <img class='instructions' src="http://res.cloudinary.com/djdfz4a67/image/upload/v1441047422/instructionsSplash_wajqpz.png" alt="" />
     </div>
+
+    <button class="start-game">PLAY</button>
 
     <div class="game-div">
       <div class="score"></div>
@@ -23,7 +31,7 @@
     <div class="game-over-msg"></div>
     <button class="restart-btn">REPLAY</button>
 
-    <div class="controls group">
+    <!-- <div class="controls group">
       <div class="wasd-container group">
         <img class='wasd-img' src="http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,w_100/v1440808490/wasd_ht1gmj.png" alt="" />
         <p class="movement">
@@ -39,7 +47,7 @@
       <div class="goal">
         <img src="http://res.cloudinary.com/djdfz4a67/image/upload/v1441039907/greyimages_lixrvq.png" alt="" />
       </div>
-    </div>
+    </div> -->
 
 
     <script src="lib/keymaster.js"></script>
@@ -72,21 +80,30 @@
       var canvas = document.getElementById("game_canvas");
       var ctx = canvas.getContext("2d");
 
-      var n = 1;
-      var game = new Thunderbird.Game(700, 700, n);
-      console.log("StageOne...");
+      $('.start-game').click(function(){
 
-      var interval = setInterval(function (){
-        game.addAsteroid();
-        n += 1;
-        // n max ~ 15
-        if (n >= 15) {
-          game.allEnemiesGenerated = true;
-          clearInterval(interval);
-        }
-      }.bind(game), 400)
+        $('button.start-game').remove();
+        $('.instructions').remove();
+        $('.game-banner').text("THUNDERBIRD")
+        $('.game-banner').addClass('game-banner-title')
 
-      new Thunderbird.GameView(game, ctx).start(canvas);
+        var n = 1;
+        var game = new Thunderbird.Game(700, 700, n);
+        console.log("StageOne...");
+
+        var interval = setInterval(function (){
+          game.addAsteroid();
+          n += 1;
+          // n max ~ 15
+          if (n >= 15) {
+            game.allEnemiesGenerated = true;
+            clearInterval(interval);
+          }
+        }.bind(game), 400)
+
+        new Thunderbird.GameView(game, ctx).start(canvas);
+      })
+
     </script>
 
 
