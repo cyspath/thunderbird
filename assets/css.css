@@ -252,3 +252,12 @@ a {
 .goal img {
   margin-top: 10px;
 }
+
+/*cover*/
+#cover {
+  z-index: 1000;
+  background: url("https://my.ucla.edu/iwe/img/bg-spinner.gif") no-repeat scroll center center #FFF;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}

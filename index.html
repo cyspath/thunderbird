@@ -8,6 +8,7 @@
     </title>
   </head>
   <body>
+    <div id="cover"></div>
 
     <a href="http://github.com/cyspath/thunderbird-game">
       <div class="game-banner">
@@ -127,6 +128,12 @@
         var score = localStorage["HIGHSCORES"];
         $('.highest-score-text').text('Your Highest Score: ' + score)
       }
+    </script>
+
+    <script>
+      $(window).load(function(){
+        $('#cover').fadeIn().delay(300).fadeOut(500)
+      })
     </script>
 
   </body>
