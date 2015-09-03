@@ -29,9 +29,8 @@
     </div>
 
     <div class="game-over-msg"></div>
-    <button class="restart-btn">REPLAY</button>
 
-    <!-- <div class="controls group">
+    <div class="controls group">
       <div class="wasd-container group">
         <img class='wasd-img' src="http://res.cloudinary.com/djdfz4a67/image/upload/c_scale,w_100/v1440808490/wasd_ht1gmj.png" alt="" />
         <p class="movement">
@@ -44,11 +43,12 @@
           Fire primary lazer
         </p>
       </div>
-      <div class="goal">
+      <!-- <div class="goal">
         <img src="http://res.cloudinary.com/djdfz4a67/image/upload/v1441039907/greyimages_lixrvq.png" alt="" />
-      </div>
-    </div> -->
+      </div> -->
+    </div>
 
+    <button class="restart-btn">REPLAY</button>
 
     <script src="lib/keymaster.js"></script>
     <script src="assets/jquery.js"></script>
@@ -80,12 +80,18 @@
       var canvas = document.getElementById("game_canvas");
       var ctx = canvas.getContext("2d");
 
+      $('.wasd-img, .movement, .fire, .j-img').hide()
+
       $('.start-game').click(function(){
 
         $('button.start-game').remove();
         $('.instructions').remove();
-        $('.game-banner').text("THUNDERBIRD")
+
+        $('.game-banner').hide().text("THUNDERBIRD").fadeIn();
         $('.game-banner').addClass('game-banner-title')
+
+        $('.wasd-img, .movement, .fire, .j-img').fadeIn()
+
 
         var n = 1;
         var game = new Thunderbird.Game(700, 700, n);
@@ -122,5 +128,6 @@
         $('.highest-score-text').text('Your Highest Score: ' + score)
       }
     </script>
+
   </body>
 </html>
