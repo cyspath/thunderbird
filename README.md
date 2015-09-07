@@ -14,7 +14,7 @@ There are four stages, each stage increases in difficulty.
 ### Animation/Graphics
 
 * No game engine was used. Explosion uses custom animation by snapshotting various frames of a sprite sheet in the Explosion class.
-* Images were edited on Gimp2 and stored in Cloudinar.
+* Images were edited on Gimp2 and stored in Cloudinary.
 
 ### Additional Details
 
