@@ -256,7 +256,7 @@ a {
 /*cover*/
 #cover {
   z-index: 1000;
-  background: url("https://my.ucla.edu/iwe/img/bg-spinner.gif") no-repeat scroll center center #FFF;
+  background: url("http://campfyre.org/img/loading.gif") no-repeat scroll center center #FFF;
   position: absolute;
   height: 100%;
   width: 100%;

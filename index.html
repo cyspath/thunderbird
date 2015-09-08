@@ -101,8 +101,8 @@
         var interval = setInterval(function (){
           game.addAsteroid();
           n += 1;
-          // n max ~ 15
-          if (n >= 16) {
+          // n max ~ 16
+          if (n >= 1) {
             game.allEnemiesGenerated = true;
             clearInterval(interval);
           }
