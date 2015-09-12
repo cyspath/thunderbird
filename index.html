@@ -94,19 +94,7 @@
         $('.wasd-img, .movement, .fire, .j-img').fadeIn(1000)
 
 
-        var n = 1;
-        var game = new Thunderbird.Game(700, 700, n);
-        console.log("StageOne...");
-
-        var interval = setInterval(function (){
-          game.addAsteroid();
-          n += 1;
-          // n max ~ 16
-          if (n >= 16) {
-            game.allEnemiesGenerated = true;
-            clearInterval(interval);
-          }
-        }.bind(game), 400)
+        var game = new Thunderbird.Game(700, 700);
 
         new Thunderbird.GameView(game, ctx).start(canvas);
       })
