@@ -1,4 +1,5 @@
 # Thunderbird
+<img src='https://raw.github.com/cyspath/thunderbird/gh-pages/assets/images/tb-edited.gif' align='center' padding='10px'>
 
 ### Overview
 
