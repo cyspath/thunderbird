@@ -9,11 +9,24 @@
   </head>
   <body>
 
-    <div class="game-banner">
-      Thunderbird
+    <div id="cover"></div>
+
+    <a href="http://github.com/cyspath/thunderbird/tree/gh-pages">
+      <div class="game-banner">
+        Source Code
+      </div>
+    </a>
+
+    <div class="instructions-div">
+      <img class='instructions' src="http://res.cloudinary.com/djdfz4a67/image/upload/v1441047422/instructionsSplash_wajqpz.png" alt="" />
     </div>
 
+    <button class="start-game">PLAY</button>
+
     <div class="game-div">
+      <div class="score"></div>
+      <div class="highest-score-text"></div>
+
       <canvas id='game_canvas' width="700" height="700"> </canvas>
     </div>
 
@@ -32,7 +45,12 @@
           Fire primary lazer
         </p>
       </div>
+      <!-- <div class="goal">
+        <img src="http://res.cloudinary.com/djdfz4a67/image/upload/v1441039907/greyimages_lixrvq.png" alt="" />
+      </div> -->
     </div>
+
+    <button class="restart-btn">REPLAY</button>
 
     <script src="lib/keymaster.js"></script>
     <script src="assets/jquery.js"></script>
@@ -41,8 +59,18 @@
     <script src="lib/movingObject.js"></script>
     <script src="lib/background.js"></script>
     <script src="lib/shipExplode.js"></script>
+
     <script src="lib/asteroid.js"></script>
     <script src="lib/ship.js"></script>
+    <script src="lib/alienBullet.js"></script>
+    <script src="lib/alienBossBullet.js"></script>
+    <script src="lib/alienBossLazer.js"></script>
+
+    <script src="lib/alienOne.js"></script>
+    <script src="lib/alienBoss.js"></script>
+
+
+
     <script src="lib/game.js"></script>
     <script src="lib/gameView.js"></script>
     <script src="lib/shipBullet.js"></script>
@@ -54,16 +82,48 @@
       var canvas = document.getElementById("game_canvas");
       var ctx = canvas.getContext("2d");
 
-      var n = 1;
-      var game = new Thunderbird.Game(700, 700, n);
+      $('.wasd-img, .movement, .fire, .j-img').hide()
 
-      var interval = setInterval(function (){
-        game.addAsteroid();
-        n += 1;
-        if (n >= 40) { clearInterval(interval) }
-      }.bind(game), 500)
+      $('.start-game').click(function(){
 
-      new Thunderbird.GameView(game, ctx).start(canvas);
+        $('button.start-game').remove();
+        $('.instructions').remove();
+
+        $('.game-banner').hide().text("THUNDERBIRD").fadeIn(1000);
+        $('.game-banner').addClass('game-banner-title')
+
+        $('.wasd-img, .movement, .fire, .j-img').fadeIn(1000)
+
+
+        var game = new Thunderbird.Game(700, 700);
+
+        new Thunderbird.GameView(game, ctx).start(canvas);
+      })
+
+    </script>
+
+
+
+    <script>
+      $('.restart-btn').click(function() {
+        $('.restart-btn').removeClass('visible');
+        location.reload();
+      })
+    </script>
+
+    <script>
+      if (localStorage["HIGHSCORES"] == undefined) {
+        $('.highest-score-text').text('Your Highest Score: 000')
+      } else {
+        var score = localStorage["HIGHSCORES"];
+        $('.highest-score-text').text('Your Highest Score: ' + score)
+      }
+    </script>
+
+    <script>
+      $(window).load(function(){
+        $('#cover').fadeIn().delay(300).fadeOut(500)
+      })
     </script>
 
   </body>
